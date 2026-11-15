@@ -54,7 +54,6 @@ def create_app(engine = None, with_lifespan: bool = True) -> FastAPI:
         CORSMiddleware,
         allow_origins=[
             "http://localhost:3000",
-            "http://192.168.1.66:3000",  # pc casa mae
         ],
         # allow_origins=["*"],
         allow_credentials=True,

@@ -39,7 +39,7 @@ class TeamService:
             )
 
             if owner_membership is None:
-                continue  # todo ou lança erro se owner for obrigatório
+                continue
 
             result.append(
                 TeamRead(

@@ -13,5 +13,9 @@ TODO.md
 .tests/
 pytest.ini
 
+.temp/
+.docs/
+.scripts/
+
 
 htmlReport

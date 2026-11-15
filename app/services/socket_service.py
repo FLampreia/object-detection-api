@@ -381,15 +381,21 @@ class SocketService:
             if frame.crossings and parameters.line is None:
                 raise ValueError("Worker returned crossings without a counting line")
             tracks = {obj.track_id for obj in frame.detections_per_frame}
+
+
             for event in frame.crossings:
                 if event.track_id not in tracks:
                     raise ValueError("Crossing object is missing from the frame")
+
                 stored_event = event.model_copy(deep=True)
+
                 if parameters.area is not None:
                     left, top = min(parameters.area.x1, parameters.area.x2), min(parameters.area.y1, parameters.area.y2)
                     stored_event.bbox = [event.bbox[0] + left, event.bbox[1] + top,
                                          event.bbox[2] + left, event.bbox[3] + top]
+
                 crossings.append(stored_event)
+
             if new_objects or crossings:
                 await self.queue_upload(pending, new_objects, context, crossings)
 

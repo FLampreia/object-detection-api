@@ -16,7 +16,6 @@ from app.db.schema import User
 from app.services.user_service import UserService
 from app.core.security import decode_token
 
-# TODO: Review JTI and Redis handling and consider a dedicated token service.
 class TokenBearer(HTTPBearer):
     check_blocklist = True
 
@@ -92,25 +91,3 @@ def get_current_user(
 
     return user
 
-#
-# def get_current_roles(
-#     token_details: dict = Depends(AccessTokenBearer())
-# ) -> List[str]:
-#
-#     return token_details["user"]["roles"]
-
-
-# TODO: Review role-based access to endpoints.
-# class RoleChecker:
-#
-#     def __init__(self, allowed_roles: List[str]):
-#         self.allowed_roles = allowed_roles
-#
-#     def __call__(self, current_user: User = Depends(get_current_user)):
-#
-#         roles_as_strings = [role.name for role in current_user.roles]
-#
-#         if any(role in self.allowed_roles for role in roles_as_strings):
-#             return True
-#
-#         raise InsufficientPermission()
